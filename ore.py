@@ -10,7 +10,7 @@ def rnd_word(n):
 
 def prf(msg, k):
     pad = "0" * (LEN - len(msg))
-    return int(hashlib.sha224(str(msg) + pad + str(k)).hexdigest(), 16)
+    return int(hashlib.sha224((msg + pad + k).encode('utf-8')).hexdigest(), 16)
 
 
 def ore_enc(m, k):
@@ -54,4 +54,4 @@ for i in range(tests):
     b = ore_enc(bin(num2)[2:], passwd)
     if ore_comp(a, b) == int_comp(num1, num2):
         cnt += 1
-print "Succeded in: %d out of %d tests." % (cnt, tests)
+print("Succeded in: %d out of %d tests." % (cnt, tests))
